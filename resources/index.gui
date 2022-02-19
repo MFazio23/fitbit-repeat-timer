@@ -1,0 +1,14 @@
+<svg viewport-fill="#222222">
+    <svg id="timer-text-svg" pointer-events="visible" x="10">
+        <use href="#fitfont" id="timer-text" class="button-blue-text">
+            <use href="#fitfont-char"/>
+            <use href="#fitfont-char"/>
+            <use href="#fitfont-char"/>
+            <use href="#fitfont-char"/>
+            <use href="#fitfont-char"/>
+        </use>
+    </svg>
+    <text id="round-text" x="100% - 10" y="45" font-size="30" text-anchor="end" text-length="10"
+          class="button-blue-text" pointer-events="visible">Round 1</text>
+    <image id="play-button" x="89" y="75" width="170" height="170" href="play-button.png" pointer-events="visible"/>
+</svg>
