@@ -1,4 +1,4 @@
-const longPressTimeout = 1000
+const longPressTimeout = 750
 
 let timer = null
 
