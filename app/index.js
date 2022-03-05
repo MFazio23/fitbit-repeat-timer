@@ -20,7 +20,7 @@ const timerTextSVG = document.getElementById("timer-text-svg");
 const timerText = new FitFont({
     id: 'timer-text',
     font: 'JetBrains_Mono_60',
-    halign: 'start',
+    halign: 'middle',
     valign: 'top',
     letterspacing: 0
 });

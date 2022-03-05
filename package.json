@@ -1,21 +1,23 @@
 {
   "name": "fitbit-repeat-timer",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "license": "MIT",
   "devDependencies": {
-    "@fitbit/sdk": "~4.3.2",
-    "@fitbit/sdk-cli": "^1.7.3"
+    "@fitbit/sdk": "~6.0.2",
+    "@fitbit/sdk-cli": "^1.7.3",
+    "fitfont": "^1.3.3"
   },
   "fitbit": {
-    "appUUID": "ca8d17c3-7810-4801-8b67-24129d785f9b",
+    "appUUID": "8820cd09-d594-4553-808f-ce255f9bf7a8",
     "appType": "app",
     "appDisplayName": "Repeat Timer",
     "iconFile": "resources/icon.png",
     "wipeColor": "#28ABFA",
     "requestedPermissions": [],
     "buildTargets": [
-      "higgs"
+      "atlas",
+      "vulcan"
     ],
     "i18n": {},
     "defaultLanguage": "en-US"
@@ -23,8 +25,5 @@
   "scripts": {
     "build": "fitbit-build",
     "debug": "fitbit"
-  },
-  "dependencies": {
-    "fitfont": "^1.3.3"
   }
 }
