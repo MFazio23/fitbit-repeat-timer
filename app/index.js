@@ -53,7 +53,7 @@ const setTimerText = (secondsLeft) => {
     timerText.text = `${(secondsLeft < 0 ? "-0" : minutes)}:${seconds}`;
 }
 
-playButton.addEventListener('click', (e) => {
+playButton.addEventListener('click', () => {
     isTimerActive = !isTimerActive;
 
     playButton.href = isTimerActive ? "pause-button.png" : "play-button.png"
@@ -96,13 +96,13 @@ const startBetweenTimer = () => {
     }, 1000);
 }
 
-longPress(roundText, (e) => {
+longPress(roundText, () => {
     setRoundText(1);
     roundCount = 1;
     vibration.start('nudge');
 });
 
-longPress(timerTextSVG, (e) => {
+longPress(timerTextSVG, () => {
     resetTimer();
     vibration.start('nudge');
 });
