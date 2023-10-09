@@ -2,6 +2,7 @@ import * as document from "document";
 import {FitFont} from 'fitfont';
 import {vibration} from "haptics";
 import {longPress} from './long-press';
+import {doubleTap} from "./double-tap";
 
 const timeBetween = 5;
 const timerTime = 30;
@@ -43,14 +44,18 @@ const setRoundText = (round) => {
 }
 
 const setTimerText = (secondsLeft) => {
-    const absSecondsLeft = Math.abs(secondsLeft);
-    const minutesNum = parseInt(absSecondsLeft / 60);
-    const secondsNum = parseInt(absSecondsLeft - (minutesNum * 60));
+    try {
+        const absSecondsLeft = Math.abs(secondsLeft);
+        const minutesNum = parseInt(absSecondsLeft / 60);
+        const secondsNum = parseInt(absSecondsLeft - (minutesNum * 60));
 
-    const minutes = minutesNum < 10 ? `0${minutesNum}` : minutesNum;
-    const seconds = secondsNum < 10 ? `0${secondsNum}` : secondsNum;
+        const minutes = minutesNum < 10 ? `0${minutesNum}` : minutesNum;
+        const seconds = secondsNum < 10 ? `0${secondsNum}` : secondsNum;
 
-    timerText.text = `${(secondsLeft < 0 ? "-0" : minutes)}:${seconds}`;
+        timerText.text = `${(secondsLeft < 0 ? "-0" : minutes)}:${seconds}`;
+    } catch (e) {
+        console.log("Error in setTimerText: ", e)
+    }
 }
 
 playButton.addEventListener('click', () => {
@@ -68,14 +73,18 @@ playButton.addEventListener('click', () => {
 const startNormalTimer = () => {
     if (timer) clearInterval(timer);
     timer = setInterval(() => {
-        timeLeft--;
-        setTimerText(timeLeft);
-        if (timeLeft <= 0) {
-            if (timer) clearInterval(timer);
-            vibration.start('nudge-max');
-            setTimer(-timeBetween);
-            isBetweenTimers = true;
-            startBetweenTimer();
+        try {
+            timeLeft--;
+            setTimerText(timeLeft);
+            if (timeLeft <= 0) {
+                if (timer) clearInterval(timer);
+                vibration.start('nudge-max');
+                setTimer(-timeBetween);
+                isBetweenTimers = true;
+                startBetweenTimer();
+            }
+        } catch (e) {
+            console.log("Error in startNormalTimer interval: ", e)
         }
     }, 1000);
 }
@@ -100,7 +109,13 @@ longPress(roundText, () => {
     setRoundText(1);
     roundCount = 1;
     vibration.start('nudge');
-});
+}, true);
+
+doubleTap(roundText, () => {
+    roundCount++;
+    setRoundText(roundCount);
+    vibration.start('nudge');
+})
 
 longPress(timerTextSVG, () => {
     resetTimer();
